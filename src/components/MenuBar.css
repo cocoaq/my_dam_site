@@ -1,0 +1,10 @@
+#menuBar {
+    background-clip:border-box;
+    background-color:red;
+}
+#mb {
+    margin: 7%;
+    padding: auto;
+    list-style-type: none;
+    float: left;
+}
