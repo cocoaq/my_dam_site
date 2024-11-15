@@ -4,6 +4,7 @@
     height: 30px;
     display: flex;
     border: solid 2px;
+    background-color: white;
 }
 
 #divstyle > div {
@@ -13,6 +14,12 @@
     align-items: center;
 }
 
-NavLink > p {
+
+#divstyle a {
     text-decoration: none;
+    color: inherit; /* 링크 기본 색상 제거 */
+}
+
+#divstyle a:hover {
+    color: gray; /* 필요하면 hover 스타일 추가 */
 }
