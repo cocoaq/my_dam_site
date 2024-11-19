@@ -1,3 +1,17 @@
 .background{
-    background-color:aliceblue;
+    background-color:blue;
+}
+
+div #minLogoImg{
+    height: 30px;
+    width: auto;
+    object-fit: cover;
+}
+
+body{
+    height: 100vh;
+    background-image: linear-gradient(rgb(113,21,233), rgb(191,101,229), rgb(245,227,255),rgb(24,20,140));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
 }

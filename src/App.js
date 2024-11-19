@@ -12,16 +12,21 @@ import Contact from "./pages/contact/Contact";
 function App() {
   return (
     <div className="background">
+      <div>
+      <img src='/dam_01.png' alt='DAM'  
+      style={{
+        maxWidth: '120px', height: 'auto', objectFit: 'cover',}}
+      />
+      </div>
       <header>
         <MenuBar />
-        <Routes>
+      </header>
+      <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<AboutMe />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-      </header>
-      {/* <Main /> */}
     </div>
   );
 }

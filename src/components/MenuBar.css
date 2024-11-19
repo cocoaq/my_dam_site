@@ -1,18 +1,10 @@
 #menuBar {
     background-clip:border-box;
-    display: flex;
-    background-color: bisque;
-    font-size: large;
+    font-size: medium;
 }
-#mb {
+/* #mb {
     margin: 7%;
     padding: auto;
     list-style-type: none;
     float: left;
-}
-
-#menuBar {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
+} */
