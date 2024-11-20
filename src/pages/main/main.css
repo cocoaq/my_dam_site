@@ -2,6 +2,7 @@
     position: fixed;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     top: 0;
     left: 0;
@@ -12,5 +13,24 @@
 }
 
 #mainImg{
-    /* background-color: gold; */
+    padding-right: 44px;
 }
+
+@keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  #modalTxt {
+    animation: blink 2s infinite;
+    color: rgb(113,21,233);
+    text-align: center;
+    size: 16px;
+  }
+  
