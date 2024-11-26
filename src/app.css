@@ -2,6 +2,17 @@
     background-color:blue;
 } */
 
+@font-face {
+    font-family: "Ycomputer";
+    font-weight: normal;
+    src: url("./fonts/Ycomputer.ttf") format("truetype");
+  }
+  
+  body {
+    font-family: "Ycomputer";
+    color:rgb(24,20,140);
+  }
+
 #topManu{
     position: fixed;
     top: 0;
@@ -24,11 +35,10 @@ body{
 }
 
 #contentDiv{
-    margin-top: 120px;
-    background-color: red;
-    padding: 3% 20%;
+    margin-top: 140px;
+    padding: 0% 20%;
 }
-
+/* 
 #contentDiv:hover {
-    background-color: purple;
-}
+    box-shadow: 0px 0px 20px rgb(245,227,255);
+} */

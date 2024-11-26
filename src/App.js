@@ -1,12 +1,12 @@
 import React from "react";
-import MenuBar from './components/MenuBar.js';
+import Nav from './components/Nav.js';
 import Main from "./pages/main/Main.js";
 import './app.css';
 
 import { Routes, Route } from "react-router-dom";
-import AboutMe from "./pages/aboutMe/AboutMe";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
+import Portfolio from "./pages/portfolio/Portfolio.js";
 
 
 function App() {
@@ -15,17 +15,17 @@ function App() {
       <div id="topManu">
       <img src='/dam_01.png' alt='DAM'  
       style={{
-        maxWidth: '120px', height: 'auto', objectFit: 'cover',}}
+        maxWidth: '120px', height: 'auto', objectFit: 'cover', padding: '10px 10%',}}
       />
         <header>
-          <MenuBar />
+          <Nav />
         </header>
       </div>
     
       <div id="contentDiv">
       <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/about" element={<AboutMe />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

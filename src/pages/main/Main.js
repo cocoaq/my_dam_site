@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Cookies } from 'react-cookie';
 import ReactDOM from 'react-dom';
 import './main.css';
+import Constents from './MainContents.js'
 
 function Main() {
     const cookies = useMemo(() => new Cookies(), [] );
@@ -27,7 +28,7 @@ function Main() {
 
     return (
         <div>
-            main
+            <Constents />
             <Modal isOpen={isModalOpen} onClose={closeModal} />
         </div>
        
