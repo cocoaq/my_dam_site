@@ -50,3 +50,42 @@
     cursor: pointer;
     color: rgba(24,20,140, 60%);
   }
+
+  p{
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  #skillList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .skillItem {
+    color: rgb(24,20,140);
+    cursor: help;
+  }
+
+  .skillItem:hover {
+    color: rgba(24,20,140, 60%);
+  }
+
+  .tooltip {
+    position: absolute;
+    word-wrap: break-word;       /* 긴 단어를 다음 줄로 */
+    overflow-wrap: break-word;  /* 긴 텍스트 줄바꿈 */
+    white-space: normal;        /* 줄바꿈 허용 */
+
+    max-width: 60%;
+    background-color: rgba(24,20,140, 80%);
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1000;
+  }
+
+  h4{
+    cursor:default
+  }

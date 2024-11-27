@@ -6,7 +6,7 @@ import './app.css';
 import { Routes, Route } from "react-router-dom";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
-import Portfolio from "./pages/portfolio/Portfolio.js";
+import Portfolio from "./pages/portfolio/Portfolio";
 
 
 function App() {
