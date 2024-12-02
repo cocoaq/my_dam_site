@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import Portfolio from "./pages/portfolio/Portfolio";
+import InputCommunity from "./pages/inputCommunity/InputCommunity.js";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/input_text" element={<InputCommunity/>} />
         </Routes>
       </div>
     </div>

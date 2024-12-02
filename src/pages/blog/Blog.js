@@ -1,9 +1,15 @@
 import React from 'react';
-
+import { NavLink } from "react-router-dom";
 
 function Blog() {
     return (
-        <p>블로그</p>
+        <div>
+            <p>블로그</p>
+
+        <NavLink to="/input_text" >
+            <button>글쓰기</button>
+        </NavLink>
+        </div>
         );     
 }
 
