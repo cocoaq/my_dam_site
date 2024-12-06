@@ -51,8 +51,8 @@
     color: rgba(24,20,140, 60%);
   }
 
-  p{
-    display: inline-block;
+  #modalTxt p{
+    /*display: inline-block;*/
     font-weight: bold;
   }
 

@@ -21,6 +21,7 @@
 #divstyle a {
     text-decoration: none;
     color: inherit; /* 링크 기본 색상 제거 */
+    font-weight: bold;
 }
 
 #divstyle a:hover {
