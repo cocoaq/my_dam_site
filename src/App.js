@@ -7,10 +7,20 @@ import { Routes, Route } from "react-router-dom";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import Portfolio from "./pages/portfolio/Portfolio";
-import InputCommunity from "./pages/inputCommunity/InputCommunity.js";
+import InputCommunity from "./pages/blog/inputCommunity/InputCommunity.js";
+import LoadCommunity from "./pages/blog/loadCommunity/LoadCommunity.js";
+import { useState } from 'react';
 
 
 function App() {
+  const [posts, setPosts] = useState([
+    {id : 1, title: "demo1", content:"hihi"},
+    {id : 2, title: "demo2", content:"hihihihi"},
+]);
+  const handleAddPost = (newPost) => {
+    setPosts((prevPosts) => [...prevPosts, newPost]);
+};
+
   return (
     <div className="background">
       <div id="topManu">
@@ -27,9 +37,11 @@ function App() {
       <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/input_text" element={<InputCommunity/>} />
+          {/* 블로그 관련 */}
+          <Route path="/blog" element={<Blog posts={posts}/>} />
+          <Route path="/blog/input_text" element={<InputCommunity onAddPost={handleAddPost}/>} />
+          <Route path="/blog/post/:id" element={<LoadCommunity posts={posts} /> } />
         </Routes>
       </div>
     </div>
