@@ -9,3 +9,8 @@ RewriteRule . /index.html [L]
 <FilesMatch "\.(html|js|css|json|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|otf|eot|ttc|otc|mp4|webm|ogg|mp3|wav|m4a|flac|aac)$">
     SetHandler none
 </FilesMatch>
+
+<Files "db_config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>

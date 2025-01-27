@@ -25,3 +25,4 @@ yarn-error.log*
 # 보안
 .env
 *.env
+db_config.php
