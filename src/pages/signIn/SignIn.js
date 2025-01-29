@@ -4,17 +4,16 @@ import Button from '@mui/material/Button';
 
 function Contact() {
     return (
-        <div className='contBG'>
+        <div className='signBG'>
 
-            <h3>Contact</h3>
-            <div className='contField'>
-                <input type='text' className='contTitle' placeholder="제목" id='contTitleField'/>
-                <input type='email' className='contMail' placeholder='e-mail' id='contMailField' />
-                <textarea placeholder='내용' className='contArea' id='contContentField'/>
-            </div>
-        
+            <h3>관리자 로그인</h3>
+            
+            <div className='signField'>
+            <input type='text' className='signPass' placeholder="ID" id='signIdField'/>
+            <input type='password'  className='signPass' placeholder="PASS" id='signPassField'/> 
+            
             <Button 
-                id='contButton'
+                id='signButton'
                 variant="contained" sx={{
                     backgroundColor: '#7115e9', // 기본 배경색
                     '&:hover': {
@@ -22,7 +21,9 @@ function Contact() {
                     },
                 }} 
                 // onClick={testLog}
-                >전송</Button>
+                >확인</Button>
+            </div>
+
         </div>
         );     
 }

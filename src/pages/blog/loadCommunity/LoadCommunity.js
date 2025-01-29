@@ -11,11 +11,12 @@ function LoadCommunity({posts}) {
     const navigate = useNavigate();
 
     if (!post) return <div>게시글이 존재하지 않습니다.</div>;
+    console.log("data" , post);
 
     return (
         <div>
-            <p>상세페이지</p>
-            <hi>{post.title}</hi>
+            <h3>제목 : {post.title}</h3>
+            <p>작성일시 : {post.date}</p>
             <p>{post.content}</p>
             <Button
                 className='inputButtonStyle'

@@ -60,11 +60,15 @@ function InputCommunity() {
             date : createDate
         };
         console.log('HTML:', comData);
+
+
+        
     }
 
 
     return (
         <div>
+            <h3>게시글 쓰기</h3>
             <input
                 className="inputTitle"
                 type="text"

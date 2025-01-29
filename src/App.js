@@ -3,15 +3,17 @@ import Nav from './components/Nav.js';
 import Main from "./pages/main/Main.js";
 import './app.css';
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
+
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import Portfolio from "./pages/portfolio/Portfolio";
 import InputCommunity from "./pages/blog/inputCommunity/InputCommunity.js";
 import LoadCommunity from "./pages/blog/loadCommunity/LoadCommunity.js";
-import { useState } from 'react';
+import SignIn from "./pages/signIn/SignIn.js";
 
-import { useEffect } from "react";
+
+import { useState, useEffect } from 'react';
 
 
 function App() {
@@ -35,8 +37,8 @@ function App() {
   }, []);
 
   const [posts, setPosts] = useState([
-    {id : 1, title: "demo1", content:"hihi"},
-    {id : 2, title: "demo2", content:"hihihihi"},
+    {id : 1, title: "demo01", content:"hihi", date:"2025-01-01"},
+    {id : 2, title: "demo02", content:"hihihihi", date:"2025-01-02"},
 ]);
   const handleAddPost = (newPost) => {
     setPosts((prevPosts) => [...prevPosts, newPost]);
@@ -45,10 +47,15 @@ function App() {
   return (
     <div className="background">
       <div id="topManu">
-      <img src='/dam_01.png' alt='DAM'  
-      style={{
-        maxWidth: '120px', height: 'auto', objectFit: 'cover', padding: '10px 10%',}}
-      />
+       <NavLink to="/" >
+        <img src='/dam_01.png' alt='DAM'  
+        style={{
+          maxWidth: '120px', height: 'auto', objectFit: 'cover', padding: '10px 10%',}}
+        />
+      </NavLink>
+      <NavLink to="/logIn">
+          <p className='loginBtn'>Log In</p>
+      </NavLink>
         <header>
           <Nav />
         </header>
@@ -57,6 +64,8 @@ function App() {
       <div id="contentDiv">
       <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/logIn" element={<SignIn />} />
+
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
           {/* 블로그 관련 */}
