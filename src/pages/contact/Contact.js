@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Button from '@mui/material/Button';
 
 
@@ -16,18 +15,21 @@ function Contact() {
 
     };
 
-
     const handleSubmit = async (e) => {
-        e.preventDefault();
         try {
-            const apiUrl = 'http://tiri99.dothome.co.kr/api/send-email.php'; // PHP 파일의 경로
-            const response = await axios.post(apiUrl, formData);
-            //const response = await axios.post('http://localhost:5000/send-email', formData);
-            //const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-            //const response = await axios.post(`${apiUrl}/send-email`, formData);
-            alert(response.data.message);
+            const formDatas = new FormData();
+            formDatas.append("email", formData.email);
+            formDatas.append("subject", formData.title);
+            formDatas.append("message", formData.message);
+            
+            const response = await fetch("http://tiri99.dothome.co.kr/api/send-email.php", {
+                method: "POST",
+                body: formDatas,
+            });
+            const data = await response.json();
+            alert(data.message);
         } catch (error) {
-            alert('메일 전송 실패');
+            alert("메일 전송 실패");
             console.error(error);
         }
     };

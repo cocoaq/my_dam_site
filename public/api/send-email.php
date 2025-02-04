@@ -1,23 +1,21 @@
 <?php
-// send-email.php
-
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = json_decode(file_get_contents("php://input"));
+$email = $_POST["email"];
+$subject = "[문의] " . $_POST["subject"];
+$message = "보낸 사람: " . $_POST["email"] . "\n\n" . $_POST["message"];
 
-    $to = "your-email@example.com";
-    $subject = $data->title;
-    $message = $data->message;
-    $headers = "From: " . $data->email;
+// 메일 헤더 설정
+$headers = "From: " . $_POST["email"] . "\r\n" .
+           "Reply-To: " . $email . "\r\n" .
+           "X-Mailer: PHP/" . phpversion();
 
-    if (mail($to, $subject, $message, $headers)) {
-        echo json_encode(["message" => "메일 전송 성공"]);
-    } else {
-        echo json_encode(["message" => "메일 전송 실패"]);
-    }
+// 메일 전송
+$mailSent = mail("tiri99@naver.com", $subject, $message, $headers);
+
+if ($mailSent) {
+    echo json_encode(["success" => true, "message" => "이메일이 성공적으로 전송되었습니다!"]);
 } else {
-    echo json_encode(["message" => "Invalid request method"]);
+    echo json_encode(["success" => false, "message" => "이메일 전송 실패"]);
 }
 ?>

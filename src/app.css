@@ -83,6 +83,7 @@ body {
 
 #signButton {
     margin-top: 20px;
+    margin-bottom: 30px;
     float: right;
 }
 
@@ -93,7 +94,7 @@ body {
     padding: 2% 5% 8% 5%;
     border-radius: 5px;
     margin: 0% auto;
-    width: 40%;
+    width: 60%;
 }
 
 .contField{
