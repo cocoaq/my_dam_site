@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import './blog.css';
 
 function Blog() {
+     //더미 데이터(app와 blog에 있음)
     const [posts, setPosts] = useState([
         {id : 1, title: "demo01", content:"hihi", date:"2025-01-01"},
         {id : 2, title: "demo02", content:"hihihihi", date:"2025-01-02"},
