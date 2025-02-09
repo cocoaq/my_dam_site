@@ -17,7 +17,7 @@ function Blog() {
     
     return (
         <div>
-            <h3>블로그</h3>
+            <h3>썱 블로그</h3>
 
         <NavLink to="/blog/input_text" >
         <Button 

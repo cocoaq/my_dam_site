@@ -37,7 +37,7 @@ function Contact() {
     return (
         <div className='contBG'>
 
-            <h3>Contact</h3>
+            <h3>짂 Contact</h3>
 
             <form onSubmit={handleSubmit}>
                 <div className='contField'>

@@ -3,7 +3,7 @@ import React from 'react';
 
 function Portfolio() {
     return (
-        <p>portfolio</p>
+        <p>큷 portfolio</p>
         );     
 }
 

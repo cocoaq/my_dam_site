@@ -90,6 +90,7 @@ function InputCommunity() {
             />
 
             <Checkbox />공지사항
+            <br />
             <Button 
                 className='inputButtonStyle'
                 variant="contained" sx={{

@@ -10,6 +10,7 @@ import Contact from "./pages/contact/Contact";
 import Portfolio from "./pages/portfolio/Portfolio";
 import InputCommunity from "./pages/blog/inputCommunity/InputCommunity.js";
 import LoadCommunity from "./pages/blog/loadCommunity/LoadCommunity.js";
+import Login from "./pages/login/Login.js";
 import SignIn from "./pages/signIn/SignIn.js";
 
 
@@ -45,6 +46,22 @@ function App() {
     setPosts((prevPosts) => [...prevPosts, newPost]);
 };
 
+    //로그인
+  const [user, setUser] = useState(null);
+  
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
+
   return (
     <div className="background">
       <div id="topManu">
@@ -54,9 +71,16 @@ function App() {
           maxWidth: '120px', height: 'auto', objectFit: 'cover', padding: '10px 10%',}}
         />
       </NavLink>
-      <NavLink to="/logIn">
+
+      {user ? (
+        <div>
+          <button onClick={handleLogout}>Log Out</button>
+        </div>
+      ) : (
+        <NavLink to="/logIn">
           <p className='loginBtn'>Log In</p>
-      </NavLink>
+        </NavLink>
+      )}
         <header>
           <Nav />
         </header>
@@ -65,7 +89,8 @@ function App() {
       <div id="contentDiv">
       <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/logIn" element={<SignIn />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/signin" element={<SignIn />} />
 
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
