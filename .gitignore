@@ -26,3 +26,4 @@ yarn-error.log*
 .env
 *.env
 db_config.php
+/vendor/firebase/php-jwt
