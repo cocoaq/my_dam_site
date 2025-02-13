@@ -22,12 +22,15 @@ function Login({ setIsLoggedIn }) {
             });
     
             const text = await response.text();
-            console.log("서버 응답:", text); // **서버에서 받은 응답을 콘솔에서 확인**
+            // console.log("서버 응답:", text); // **서버에서 받은 응답을 콘솔에서 확인**
             
             try {
                 const data = JSON.parse(text);
                 if (data.success) {
                     localStorage.setItem("token", data.token);
+                    localStorage.setItem("MEM_ID", data.MEM_ID);
+                    localStorage.setItem("MEM_NAME", data.MEM_NAME);
+                    localStorage.setItem("MEM_NO", data.MEM_NO);
                     alert("로그인 성공!");
                     window.location.href = "/";
                 } else {
@@ -46,40 +49,7 @@ function Login({ setIsLoggedIn }) {
         setFormData({ mem_id: "", mem_pass: "" });
         e.target.reset();
     };
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const mem_id = e.target.mem_id.value;
-    //     const mem_pass = e.target.mem_pass.value;
-
-    //     try {
-    //         const response = await fetch("http://tiri99.dothome.co.kr/api/login.php", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify({ mem_id, mem_pass }),
-    //         });
-    //         // 응답이 JSON이 아닐 경우 대비
-    //         if (!response.ok) {
-    //             console.error("서버 오류:", response.status);
-    //             alert("서버 오류 발생");
-    //             return;
-    //         }
-
-    //         const data = await response.json();
-    //         if (data.success) {
-    //             localStorage.setItem("token", data.token);
-    //             alert("로그인 성공!");
-    //             window.location.href = "/";
-    //         } else {
-    //             alert("로그인 실패: " + data.message);
-    //         }
-    //     } catch (error) {
-    //         console.error("로그인 요청 중 오류 발생:", error);
-    //         alert("서버 오류가 발생했습니다.");
-    //     }
-    //     setFormData({ mem_id: "", mem_pass: "" });
-    //     e.target.reset();
-
-    // };
+    
 
 
     return (

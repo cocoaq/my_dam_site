@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 }
 
 // 로그인 시도
-$stmt = $conn->prepare("SELECT MEM_ID, MEM_NAME, MEM_PASS FROM Member WHERE MEM_ID = ?");
+$stmt = $conn->prepare("SELECT MEM_ID, MEM_NO, MEM_PASS, MEM_NAME FROM Member WHERE MEM_ID = ?");
 $stmt->bind_param("s", $mem_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -41,7 +41,7 @@ $user = $result->fetch_assoc();
 
 if ($user && password_verify($mem_pass, $user['MEM_PASS'])) {
     $token = generate_jwt(["MEM_ID" => $user['MEM_ID'], "MEM_NAME" => $user['MEM_NAME']]);
-    echo json_encode(["success" => true, "token" => $token, "MEM_NAME" => $user['MEM_NAME']]);
+    echo json_encode(["success" => true, "token" => $token, "MEM_NAME" => $user['MEM_NAME'], "MEM_ID" => $user['MEM_ID'], "MEM_NO" => $user['MEM_NO']]);
 } else {
     echo json_encode(["success" => false, "message" => "로그인 실패: 아이디 또는 비밀번호가 올바르지 않습니다."]);
 }

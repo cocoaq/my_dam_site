@@ -57,19 +57,7 @@ function SignIn() {
     }
   };
 
-  //   if(form.mem_id ){
-
-  //   }
-  //   e.preventDefault();
-  //   const response = await fetch("http://tiri99.dothome.co.kr/api/register.php", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(form),
-  //   });
-  //   const data = await response.json();
-  //   alert(data.message);
-  // };
-
+ 
 
   return (
     <div className='loginBG'>

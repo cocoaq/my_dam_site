@@ -18,53 +18,42 @@ import SignIn from "./pages/signIn/SignIn.js";
 
 function App() {
 
-  const [responseText, setResponseText] = useState('');
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch('http://tiri99.dothome.co.kr/api/items.php');
-  //     const text = await response.text(); // JSON 대신 텍스트로 확인
-  //     console.log(text); // HTML이나 에러 메시지가 반환되는지 확인
-  //     setResponseText(text); // 데이터를 상태에 저장
-  //   } catch (error) {
-  //     console.error("데이터 가져오기 실패:", error); // 에러 로그 출력
-  //   }
-  // };
-
-  // // 컴포넌트가 처음 렌더링될 때 데이터 가져오기
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   //더미 데이터(app와 blog에 있음)
   const [posts, setPosts] = useState([
-    {id : 1, title: "demo01", content:"hihi", date:"2025-01-01"},
-    {id : 2, title: "demo02", content:"hihihihi", date:"2025-01-02"},
+    {id : 1, title: "a-demo01", content:"hihi", date:"2025-01-01"},
+    {id : 2, title: "a-demo02", content:"hihihihi", date:"2025-01-02"},
 ]);
   const handleAddPost = (newPost) => {
     setPosts((prevPosts) => [...prevPosts, newPost]);
 };
 
-
   //로그인
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // console.log("localStorage:", localStorage);
 
-  
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
+    } else{
+      setIsLoggedIn(false);
     }
   }, []);
 
 
-  const handleLogin = (token) => {
-    setIsLoggedIn(true);
-    localStorage.setItem("token", token);
-  };
+  // const handleLogin = (token) => {
+  //   setIsLoggedIn(true);
+  //   localStorage.setItem("token", token);
+
+  // };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("MEM_ID");
+    localStorage.removeItem("MEM_NAME");
+    localStorage.removeItem("MEM_NO");
+    window.location.href = "/";
+    console.log("로그아웃");
   };
 
 
@@ -80,10 +69,11 @@ function App() {
 
       { !isLoggedIn ? (
         <NavLink to="/logIn">
-          <p className='loginBtn' onClick={handleLogin}>Log In</p>
+          {/* <p className='loginBtn' onClick={handleLogin}>Log In</p> */}
+          <p className='loginBtn' >Log In</p>
         </NavLink>
       ) : (
-        <p className='loginBtn' onClick={handleLogout}>Log Out</p>
+        <p className='loginBtn' onClick={handleLogout}>{localStorage.getItem("MEM_NAME")}:Log Out</p>
       )}
         <header>
           <Nav isLoggedIn={isLoggedIn} onLogout={handleLogout} />
