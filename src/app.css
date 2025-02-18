@@ -97,11 +97,12 @@ body {
 /* contact 관련 */
 
 .contBG {
+    max-width: 60%;
+    min-width: 300px;
     background-color: rgba(255, 255, 255, 30%);
-    padding: 2% 5% 8% 5%;
+    padding: 2% 5% 3% 5%;
     border-radius: 5px;
     margin: 0% auto;
-    width: 60%;
 }
 
 .contField{
@@ -137,7 +138,8 @@ body {
 }
 
 #contButton {
-    float: right;
+    display: block; /* block 요소로 변경 */
+    margin-left: auto; /* 왼쪽 마진 자동 조정 */
+    margin-right: 0; /* 오른쪽 정렬 */
     margin-top: 10px;
-    margin-bottom: 0%;
 }

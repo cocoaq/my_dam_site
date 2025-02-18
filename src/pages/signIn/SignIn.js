@@ -10,10 +10,10 @@ function SignIn() {
     let message = "";
     switch (name) {
       case "mem_id":
-        if (!/^[a-zA-Z]{1,20}$/.test(value)) message = "아이디는 영문 20자 이하로 입력하세요.";
+        if (!/^[a-zA-Z0-9]{1,15}$/.test(value)) message = "아이디는 영문과 숫자의 15자 이하로 입력하세요.";
         break;
       case "mem_pass":
-        if (!/^[a-zA-Z0-9]{1,10}$/.test(value)) message = "비밀번호는 영문과 숫자로 10자 이하로 입력하세요.";
+        if (!/^[a-zA-Z0-9]{1,20}$/.test(value)) message = "비밀번호는 영문과 숫자로 20자 이하로 입력하세요.";
         break;
       case "mem_name":
         if (value.length > 20) message = "이름은 20자 이하로 입력하세요.";

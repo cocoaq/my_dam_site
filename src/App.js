@@ -18,18 +18,9 @@ import SignIn from "./pages/signIn/SignIn.js";
 
 function App() {
 
-  //더미 데이터(app와 blog에 있음)
-  const [posts, setPosts] = useState([
-    {id : 1, title: "a-demo01", content:"hihi", date:"2025-01-01"},
-    {id : 2, title: "a-demo02", content:"hihihihi", date:"2025-01-02"},
-]);
-  const handleAddPost = (newPost) => {
-    setPosts((prevPosts) => [...prevPosts, newPost]);
-};
 
   //로그인
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // console.log("localStorage:", localStorage);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -40,11 +31,6 @@ function App() {
   }, []);
 
 
-  // const handleLogin = (token) => {
-  //   setIsLoggedIn(true);
-  //   localStorage.setItem("token", token);
-
-  // };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -89,11 +75,10 @@ function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
           {/* 블로그 관련 */}
-          <Route path="/blog" element={<Blog posts={posts}/>} />
-          <Route path="/blog/input_text" element={<InputCommunity onAddPost={handleAddPost}/>} />
-          <Route path="/blog/post/:id" element={<LoadCommunity posts={posts} /> } />
-          {/* api 관련 */}
-          {/* <Route path="/api" element={<items />} /> */}
+          <Route path="/blog" element={<Blog/>} />
+          <Route path="/blog/input_text" element={<InputCommunity />} />
+          <Route path="/blog/post/:id" element={<LoadCommunity /> } />
+
         </Routes>
       </div>
     </div>
