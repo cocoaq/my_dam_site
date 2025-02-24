@@ -3,7 +3,6 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import '../blog.css';
 
 import Button from '@mui/material/Button';
 import { Checkbox } from '@mui/material';

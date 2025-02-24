@@ -27,3 +27,6 @@ yarn-error.log*
 *.env
 db_config.php
 /vendor/firebase/php-jwt
+
+# 불필요 data
+*.pdf

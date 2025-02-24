@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import Button from '@mui/material/Button';
 
-import './blog.css';
+
 
 
 function Blog() {

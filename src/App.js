@@ -11,8 +11,8 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Blog from "./pages/blog/Blog";
 import Contact from "./pages/contact/Contact";
 import Portfolio from "./pages/portfolio/Portfolio";
-import InputCommunity from "./pages/blog/inputCommunity/InputCommunity.js";
-import LoadCommunity from "./pages/blog/loadCommunity/LoadCommunity.js";
+import InputCommunity from "./pages/blog/InputCommunity.js";
+import LoadCommunity from "./pages/blog/LoadCommunity.js";
 import Login from "./pages/login/Login.js";
 import SignIn from "./pages/signIn/SignIn.js";
 

@@ -1,6 +1,3 @@
-/* .background{
-    background-color:blue;
-} */
 
 @font-face {
     font-family: "Ycomputer";
@@ -19,6 +16,7 @@ body {
     left: 0;
     right: 0;
     background-color: rgb(116, 40, 214);
+    z-index: 99;
 }
 
 div #minLogoImg {
@@ -28,11 +26,12 @@ div #minLogoImg {
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background-image: linear-gradient(rgb(113, 21, 233), rgb(191, 101, 229), rgb(245, 227, 255), rgb(24, 20, 140));
     background-repeat: no-repeat;
     background-size: cover;
     background-size: 100% 100%;
+    background-attachment: fixed;
 }
 
 #contentDiv {
@@ -53,10 +52,6 @@ body {
     color: #fff;
 }
 
-/* 
-#contentDiv:hover {
-    box-shadow: 0px 0px 20px rgb(245,227,255);
-} */
 
 /* 로그인 관련 */
 
@@ -70,7 +65,7 @@ body {
     max-width: 400px;
 }
 
-.loginField{
+.loginField {
     text-align: center;
 }
 
@@ -85,12 +80,12 @@ body {
 
 #loginButton {
     margin-top: 20px;
-    display: block; /* block 요소로 변경 */
-    margin-left: auto; /* 왼쪽 마진 자동 조정 */
-    margin-right: 0; /* 오른쪽 정렬 */
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
 }
 
-.signInBtn{
+.signInBtn {
     float: left;
 }
 
@@ -105,7 +100,7 @@ body {
     margin: 0% auto;
 }
 
-.contField{
+.contField {
     text-align: center;
 }
 
@@ -116,7 +111,7 @@ body {
     border-radius: 4px 4px 4px 4px;
     border-bottom: 1px solid #ddd;
     margin: 5px auto;
-    flex-direction : column;
+    flex-direction: column;
 }
 
 .contMail {
@@ -138,8 +133,164 @@ body {
 }
 
 #contButton {
-    display: block; /* block 요소로 변경 */
-    margin-left: auto; /* 왼쪽 마진 자동 조정 */
-    margin-right: 0; /* 오른쪽 정렬 */
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: 10px;
+}
+
+/*포트폴리오 관련*/
+
+.portBG {
+    max-width: 100%;
+    min-width: 300px;
+    background-color: rgba(255, 255, 255, 30%);
+    padding: 2% 5% 3% 5%;
+    border-radius: 5px;
+    margin: 0% auto;
+}
+
+.portDiv {
+    /* position: relative;
+    z-index: 0; */
+    max-width: 20%;
+    background-color: rgba(255, 255, 255, 30%);
+    padding: 2% 5% 3% 5%;
+    border-radius: 5px;
+}
+
+
+/* blog 관련*/
+
+.editor-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+.ql-toolbar {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+}
+
+.ql-container {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    min-height: 400px;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.inputTitle {
+    width: 100%;
+    height: 26px;
+    border: 16px;
+    border-radius: 4px 4px 4px 4px;
+    margin: 0% 0% 5px 0%;
+}
+
+.inputButtonStyle {
+    float: right;
+}
+
+.inputWriter {
+    width: 30%;
+    height: 100%;
+    height: 26px;
+    border: 16px;
+    border-radius: 4px 4px 4px 4px;
+    margin: 0% 0% 3% 0%;
+}
+
+.blogBG {
+    position: relative;
+    z-index: 0;
+    max-width: 100%;
+    min-width: 300px;
+    background-color: rgba(255, 255, 255, 30%);
+    padding: 2% 5% 3% 5%;
+    border-radius: 5px;
+    margin: 0% auto;
+}
+
+
+.blogList {
+    padding: 6px 3px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* 요소가 넘칠 경우 다음 줄로 감싸짐 */
+}
+
+.blogList>div {
+    width: 100%;
+    display: block;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.blogList>div>li {
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(rgba(191, 101, 229, 10%), rgba(245, 227, 255, 50%));
+}
+
+.blogList>div>li>p {
+    margin-right: 10px;
+}
+
+.listNo {
+    color: rgb(113, 21, 233);
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.listTitle {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.listNotice {
+    background: rgb(113, 21, 233);
+    border-radius: 5px;
+    font-size: small;
+    color: rgb(245, 227, 255)
+}
+
+.listMember {
+    color: rgb(24, 20, 140, 60%);
+    font-weight: bold;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.listDate {
+    color: rgb(24, 20, 140, 60%);
+    margin-right: 1%;
+    margin-left: 1%;
+    float: right;
+}
+
+.loadDate {
+    color: rgb(24, 20, 140, 60%);
+
+}
+
+#blogButton {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: 10px;
+    z-index: -1;
+}
+
+#blogLButton {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
     margin-top: 10px;
 }

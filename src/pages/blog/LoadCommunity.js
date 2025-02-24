@@ -3,8 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { Button } from '@mui/material';
 
-import '../blog.css';
-
 function LoadCommunity() {
     const { id } = useParams();
     const [post, setPost] = useState(null);
@@ -35,7 +33,7 @@ function LoadCommunity() {
 //COM_NO, COM_TITLE, COM_CONTENT, COM_TYPE, COM_DATE, COM_MEMBER
     return (
         <div className="contBG">
-            {(post.COM_MEMBER).split("/")[1] == 1 && <p className='listNotice'>공지사항</p>}
+            {(post.COM_MEMBER).split("/")[1] === 1 && <p className='listNotice'>공지사항</p>}
             <p className='listTitle'>제목 : {post.COM_TITLE}</p>
             <p className='listMember'> 작성자 : {(post.COM_MEMBER).split("/")[0]}</p>
             <small className='loadDate'> 작성일 : { (post.COM_DATE).split("T")[0] }/{ ((post.COM_DATE).split("T")[1]).split(":")[0] }:{ ((post.COM_DATE).split("T")[1]).split(":")[1] }</small>
@@ -44,7 +42,7 @@ function LoadCommunity() {
            
             <Button
                 variant="contained" 
-                id="blogButton"
+                id="blogLButton"
                 sx={{
                 backgroundColor: '#7115e9', // 기본 배경색
                     '&:hover': {
