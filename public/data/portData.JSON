@@ -3,17 +3,17 @@
         {
             "title": "KH정보교육원[세미/ 파이널 프로젝트]",
             "date": "2020년",
-            "route": "경로1"
+            "route": "/pdf/portfolio01.pdf"
         },
         {
             "title": "개인 홈페이지(react)",
             "date": "2024~2025년",
-            "route": "경로2"
+            "route": "/pdf/portfolio01.pdf"
         },
         {
             "title": "앱 개발 기획",
             "date": "2024년",
-            "route": "경로3"
+            "route": "/pdf/portfolio01.pdf"
         }
     ]
 }
