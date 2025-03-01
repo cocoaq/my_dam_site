@@ -62,7 +62,7 @@ function SignIn() {
   return (
     <div className='loginBG'>
 
-      <h3>펝 Sign In</h3>
+      <h3>솒 Sign In</h3>
 
       <div className='loginField'>
         <form onSubmit={handleSubmit}>

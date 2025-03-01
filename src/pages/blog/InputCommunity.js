@@ -103,11 +103,11 @@ function InputCommunity() {
                 body: JSON.stringify(postData),
             });
     
-            const text = await response.text(); // 👈 **JSON이 아니라면 그대로 출력**
+            const text = await response.text(); 
             console.log("서버 응답:", text);
     
             try {
-                const result = JSON.parse(text); // 👈 **이제 JSON 변환**
+                const result = JSON.parse(text); // JSON 변환
                 if (result.success) {
                     alert("게시글이 등록되었습니다.");
                     navigate("/blog");
@@ -126,7 +126,7 @@ function InputCommunity() {
 
     return (
         <div>
-            <h3>게시글 쓰기</h3>
+            <h3>펝 게시글 쓰기</h3>
             <input
                 className="inputTitle"
                 type="text"
@@ -163,9 +163,9 @@ function InputCommunity() {
             <Button 
                 className='inputButtonStyle'
                 variant="contained" sx={{
-                    backgroundColor: '#7115e9', // 기본 배경색
+                    backgroundColor: '#7115e9', 
                     '&:hover': {
-                        backgroundColor: '#bf65e5', // 호버 상태 배경색
+                        backgroundColor: '#bf65e5', 
                     },
                 }} 
                 onClick={handleSubmit}>전송</Button>

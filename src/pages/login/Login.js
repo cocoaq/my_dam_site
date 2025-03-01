@@ -22,8 +22,7 @@ function Login({ setIsLoggedIn }) {
             });
     
             const text = await response.text();
-            // console.log("서버 응답:", text); // **서버에서 받은 응답을 콘솔에서 확인**
-            
+   
             try {
                 const data = JSON.parse(text);
                 if (data.success) {
@@ -71,9 +70,9 @@ function Login({ setIsLoggedIn }) {
                         type='submit'
                         disabled={!formData}
                         variant="contained" sx={{
-                            backgroundColor: '#7115e9', // 기본 배경색
+                            backgroundColor: '#7115e9', 
                             '&:hover': {
-                                backgroundColor: '#bf65e5', // 호버 상태 배경색
+                                backgroundColor: '#bf65e5', 
                             },
                         }}
 

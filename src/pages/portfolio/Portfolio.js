@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
 import Modal from "react-modal";
 import { Document, Page, pdfjs } from 'react-pdf';
 
@@ -9,8 +9,6 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import * as pdfjsLib from 'pdfjs-dist/webpack';
 
 Modal.setAppElement("#root"); // 모달 접근성
-
-
 
 function Portfolio() {
 
@@ -26,47 +24,39 @@ function Portfolio() {
     const [scale, setScale] = useState(1.0); // PDF 확대/축소 상태 추가
 
 
-
-
     useEffect(() => {
         fetch('/data/portData.JSON')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to load JSON data');
-                }
-                return response.json();
-            })
+            .then((response) => response.ok ? response.json() : Promise.reject('Failed to load JSON'))
             .then((data) => setPortPDF(data.portfolio))
-            .catch((error) => console.error(error));
+            .catch(console.error);
     }, []);
 
     useEffect(() => {
-        if (portOpen) {
-            document.body.style.overflow = "hidden"; // 🔒 스크롤 잠금
-        } else {
-            document.body.style.overflow = "auto"; // 🔓 스크롤 해제
-        }
-
-        return () => {
-            document.body.style.overflow = "auto"; // 🔄 컴포넌트 언마운트 시 원래 상태로 복구
-        };
+        document.body.style.overflow = portOpen ? "hidden" : "auto";
+        return () => { document.body.style.overflow = "auto"; };
     }, [portOpen]);
 
 
-
-    if (!portPDF) {
-        return <div>Loading...</div>
-    }
-
-    const portModalOn = (index) => {
-        setSelectedFile(portPDF[index].route);
+    const portModalOn = useCallback((file) => {
+        setSelectedFile(file);
         setPortOpen(true);
-    };
+        setCurrentPage(1);
+    }, []);
 
-    const PdfThumbnail = ({ fileUrl }) => {
-        const [imageUrl, setImageUrl] = useState(null);
+
+
+    //랜더링 줄이기용
+    const memoizedDocument = useMemo(() => (
+        <Document file={selectedFile} onLoadSuccess={({ numPages }) => setNumPages(numPages)}>
+            <Page pageNumber={currentPage} scale={scale} />
+        </Document>
+    ), [selectedFile, currentPage, scale]);
+
+
+    const PdfThumbnail =  memo(({ fileUrl }) => {
         const canvasRef = useRef(null);
-        const renderTaskRef = useRef(null); // ✅ 현재 실행 중인 렌더링 작업 저장
+        const [imageUrl, setImageUrl] = useState(null);
+        const renderTaskRef = useRef(null);
 
         useEffect(() => {
             let cancelRendering = false;
@@ -88,25 +78,22 @@ function Portfolio() {
 
                     const renderContext = { canvasContext: context, viewport };
 
-                    // 렌더링 작업이 있으면 중단
+                    // 이전 작업이 있으면 중단
                     if (renderTaskRef.current) {
                         renderTaskRef.current.cancel();
                     }
 
-                    //새로운 렌더링 작업 실행
+                    // 새로운 작업 실행
                     renderTaskRef.current = page.render(renderContext);
-
                     renderTaskRef.current.promise.then(() => {
                         if (!cancelRendering) {
                             const imageDataUrl = canvas.toDataURL("image/png");
                             setImageUrl(imageDataUrl);
                         }
-                    }).catch(err => {
-
-                    });
+                    }).catch(() => { });
 
                 } catch (error) {
-
+                    console.error("썸네일 로딩 오류:", error);
                 }
             };
 
@@ -115,7 +102,7 @@ function Portfolio() {
             return () => {
                 cancelRendering = true;
                 if (renderTaskRef.current) {
-                    renderTaskRef.current.cancel(); // 언마운트 시 기존 렌더링 중단
+                    renderTaskRef.current.cancel();
                 }
             };
         }, [fileUrl]);
@@ -123,41 +110,37 @@ function Portfolio() {
         return (
             <div>
                 {imageUrl ? (
-
-                    <img
-                        src={imageUrl}
-                        alt="PDF 썸네일"
-                        width="100%"
-                        style={{ objectFit: "cover" }} // ✅ style 속성 사용
-                    />
-
+                    <img src={imageUrl} alt="PDF 썸네일" width="100%" style={{ objectFit: "cover" }} />
                 ) : (
                     <canvas ref={canvasRef} style={{ display: "none" }} />
                 )}
             </div>
         );
-    };
+    });
+    
+    const memoizedPortfolios = useMemo(() => (
+        portPDF?.map((item, index) => (
+            <div key={index} className='portDiv' onClick={() => portModalOn(item.route)} >
+                <PdfThumbnail fileUrl={item.route} />
+                <p className='portTitle'>{item.title}</p>
+                <hr className='portHr' />
+                <small className='portYear'>{item.date}</small>
+            </div>
+        ))
+    ), [portPDF, portModalOn]);
 
 
     return (
         <div className='portBG'>
             <h3>큷 portfolio</h3>
-            <div className='portContentDiv'>
-                {portPDF.map((portPDF, index) => (
-                    <div key={index} className='portDiv' onClick={() => portModalOn(index)} >
-                        <PdfThumbnail fileUrl={portPDF.route} />
-                        <p className='portTitle'>{portPDF.title}</p>
-                        <hr className='portHr' />
-                        <small className='portYear'>{portPDF.date}</small>
-                    </div>
-                ))}
-
-            </div>
-
+            <div className='portContentDiv'>{memoizedPortfolios}</div>
             <Modal
                 className='modalStyle'
                 isOpen={portOpen}
-                onRequestClose={() => setPortOpen(false)}
+                onRequestClose={() => {
+                    setPortOpen(false);
+                    setSelectedFile(null);
+                }}
                 style={{
                     overlay: {
                         backgroundColor: "rgba(0, 0, 0, 0.5)"
@@ -179,7 +162,7 @@ function Portfolio() {
                     }
                 }}
             >
-                <button onClick={() => setPortOpen(false)} className="closeButton">닫기 </button>
+                <button onClick={() => setPortOpen(false)} className="closeButton">닫기</button>
 
                 <div className='pdfConDiv'>
                     <div className="pdfControls">
@@ -189,17 +172,7 @@ function Portfolio() {
                     </div>
                 </div>
 
-
-                {selectedFile && (
-                    <div className="pdfContainer">
-                        <Document
-                            file={selectedFile}
-                            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-                        >
-                            <Page pageNumber={currentPage} scale={scale} />
-                        </Document>
-                    </div>
-                )}
+                <div className="pdfContainer">{selectedFile && memoizedDocument}</div>
 
                 <div className="pdfControls">
                     <button disabled={currentPage <= 1} onClick={() => setCurrentPage(currentPage - 1)}>◀ 이전</button>
@@ -207,6 +180,7 @@ function Portfolio() {
                     <button disabled={currentPage >= numPages} onClick={() => setCurrentPage(currentPage + 1)}>다음 ▶</button>
                 </div>
             </Modal>
+
         </div>
     );
 }

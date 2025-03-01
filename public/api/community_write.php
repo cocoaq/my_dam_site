@@ -34,8 +34,8 @@ if ($conn->connect_error) {
 }
 
 // 게시글 삽입
-$query = $conn->prepare("INSERT INTO Community (COM_TITLE, COM_CONTENS, COM_DATE, COM_TYPE, COM_MEMBER) VALUES (?, ?, ?, ?, ?)");
-$query->bind_param("sssis", $title, $content, $date, $type, $writer); // 🔥 writer를 명확하게 `s`로 설정
+$query = $conn->prepare("INSERT INTO Community (COM_TITLE, COM_CONTENT, COM_DATE, COM_TYPE, COM_MEMBER) VALUES (?, ?, ?, ?, ?)");
+$query->bind_param("sssis", $title, $content, $date, $type, $writer); // writer를 명확하게 `s`로 설정
 
 if ($query->execute()) {
     echo json_encode(["success" => true, "message" => "게시글 등록 성공!"]);

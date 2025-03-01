@@ -56,7 +56,7 @@ function Blog() {
                         <div key={posts.COM_NO}>
                             <li className='blogItems' onClick={() => navigate(`/blog/post/${posts.COM_NO}`)}>
                                 <p className='listNo'>{posts.COM_NO}</p>
-                                {(posts.COM_MEMBER).split("/")[1] == 1 && <p className='listNotice'>공지사항</p>}
+                                {(posts.COM_MEMBER).split("/")[1] === 1 && <p className='listNotice'>공지사항</p>}
                                 <p className='listTitle'>{posts.COM_TITLE}</p>
                                 <p className='listMember'> {(posts.COM_MEMBER).split("/")[0]}</p>
                                 <small className='listDate'> {(posts.COM_DATE).split("T")[0]}
@@ -78,9 +78,7 @@ function Blog() {
                             },
                         }}
                     >이전</Button>
-                    {/* <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
-          이전
-        </button> */}
+
                     <span> {currentPage} / {totalPages} </span>
                     <Button
                         onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}
@@ -90,10 +88,8 @@ function Blog() {
                                 backgroundColor: '#bf65e5', // 호버 상태 배경색
                             },
                         }}
-                    >이전</Button>
-                    {/* <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages}>
-          다음
-        </button> */}
+                    >이후</Button>
+
                 </div>
             </div>
         </div>

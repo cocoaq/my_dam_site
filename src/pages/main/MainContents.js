@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function MainContact() {
@@ -7,6 +8,8 @@ function MainContact() {
     const [hoverSkill, setHoverSkill] = useState(null);
     const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
     const [skill, setSkill] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('/data/mainData.JSON')
@@ -42,7 +45,7 @@ function MainContact() {
     <div>
         <div id='mainContentDiv'>
         <img id='contentImg' src='/dam_00.png' alt='메인 이미지. Develoment And Me하고 적혀있다.'/>
-        <h3 id='onCursor' onClick={()=>{window.open(githubUrl)}}>겗 this site github (현재 비공개)</h3>
+        <h3 id='onCursor' onClick={()=>{window.open(githubUrl)}}>겗 this site github</h3>
         <div id='skillList'><h4>돉</h4>
         {Object.keys(skill).map((skill) => (
             <h4 
@@ -56,7 +59,7 @@ function MainContact() {
         ))}
         </div> 
         <h4>윛 대한민국 서울</h4>
-        <h4>멞 tiri99@naver.com</h4>
+        <h4 id='onCursor' onClick={() => navigate(`/contact`)}>멞 tiri99@naver.com</h4>
         </div>
         {hoverSkill && (
             <div
