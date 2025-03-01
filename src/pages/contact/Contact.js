@@ -16,6 +16,7 @@ function Contact() {
     };
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const formDatas = new FormData();
             formDatas.append("email", formData.email);
@@ -28,6 +29,14 @@ function Contact() {
             });
             const data = await response.json();
             alert(data.message);
+            
+            setFormData({
+                email: '',
+                title: '',
+                message: '',
+            });
+
+
         } catch (error) {
             alert("메일 전송 실패");
             console.error(error);

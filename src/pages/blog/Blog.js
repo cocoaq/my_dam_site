@@ -56,7 +56,7 @@ function Blog() {
                         <div key={posts.COM_NO}>
                             <li className='blogItems' onClick={() => navigate(`/blog/post/${posts.COM_NO}`)}>
                                 <p className='listNo'>{posts.COM_NO}</p>
-                                {(posts.COM_MEMBER).split("/")[1] == 1 && <p className='listNotice'>공지사항</p>}
+                                {posts.COM_TYPE == 1 && <p className='listNotice'>공지사항</p>}
                                 <p className='listTitle'>{posts.COM_TITLE}</p>
                                 <p className='listMember'> {(posts.COM_MEMBER).split("/")[0]}</p>
                                 <small className='listDate'> {(posts.COM_DATE).split("T")[0]}

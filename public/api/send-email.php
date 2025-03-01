@@ -1,6 +1,11 @@
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
+if (!isset($_POST["email"]) || !isset($_POST["subject"]) || !isset($_POST["message"])) {
+    echo json_encode(["success" => false, "message" => "필수 입력값이 없습니다."]);
+    exit;
+}
+
 $email = $_POST["email"];
 $subject = "[문의] " . $_POST["subject"];
 $message = "보낸 사람: " . $_POST["email"] . "\n\n" . $_POST["message"];
